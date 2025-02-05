@@ -2,6 +2,7 @@ package com.example.finaluri
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.nfc.Tag
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.green
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,8 +29,11 @@ import com.example.finaluri.models.BoardSize
 import com.example.finaluri.models.MemoryCard
 import com.example.finaluri.models.MemoryGame
 import com.example.finaluri.utils.DEFAULT_ICONS
+import com.github.jinatonic.confetti.CommonConfetti
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
 import com.google.android.material.snackbar.Snackbar
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -184,6 +189,7 @@ class MainActivity : AppCompatActivity() {
             tvNumPairs.text ="წყვილი: ${memoryGame.numPairsFound} / ${boardSize.getNumPairs()}"
             if (memoryGame.haveWonGame()) {
                 Snackbar.make(clRoot,"შენ გაიმარჯვე! გილოცავ.", Snackbar.LENGTH_LONG).show()
+                CommonConfetti.rainingConfetti(clRoot,intArrayOf(Color.YELLOW, Color.BLUE, Color.BLACK,Color.MAGENTA)).oneShot()
             }
         }
         tvNumMoves.text= "მცდელობა: ${memoryGame.getNumMoves()}"
